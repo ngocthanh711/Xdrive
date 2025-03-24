@@ -1,86 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:phenikaaxdrive/components/stars_%20rating.dart';
+import 'package:phenikaaxdrive/components/tag_buttons.dart';
 
-class StarRatingWidget extends StatefulWidget {
-  @override
-  _StarRatingWidgetState createState() => _StarRatingWidgetState();
-}
 
-class TagButtons extends StatefulWidget {
-  @override
-  _TagButtonsState createState() => _TagButtonsState();
-}
 
-class _TagButtonsState extends State<TagButtons> {
-  List<String> tags = [
-    "Tuyệt vời!",
-    "Xe sạch sẽ",
-    "Lái xe an toàn",
-    "Ngồi êm ái",
-    "Đúng giờ",
-    "Di chuyển nhanh",
-    "Ứng dụng dễ dùng",
-  ];
-  Set<String> selectedTags = {}; // Lưu trạng thái button nào được chọn
+class Rating extends StatelessWidget {
 
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      width: double.infinity,
-      padding: EdgeInsets.symmetric(horizontal: 16),
-      child: Wrap(
-        alignment: WrapAlignment.start,
-        spacing: 8,
-        runSpacing: 8,
-        children:
-            tags.map((tag) {
-              bool isSelected = selectedTags.contains(tag);
-
-              return ElevatedButton(
-                onPressed: () {
-                  setState(() {
-                    if (isSelected) {
-                      selectedTags.remove(tag); // Bỏ chọn nếu đã chọn trước đó
-                    } else {
-                      selectedTags.add(tag); // Chọn nếu chưa chọn
-                    }
-                  });
-                },
-                style: ElevatedButton.styleFrom(
-                  backgroundColor:
-                      isSelected ? Color(0xFF16348F) : Color(0xFFDAE4FF),
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(32),
-                  ),
-                  padding: EdgeInsets.symmetric(vertical: 12, horizontal: 16),
-                ),
-                child: Text(
-                  tag,
-                  style: TextStyle(
-                    fontSize: 12,
-                    fontWeight: FontWeight.w600,
-                    height: 1.33333,
-                    color: isSelected ? Colors.white : Color(0xFF16348F),
-                  ),
-                ),
-              );
-            }).toList(),
-      ),
-    );
-  }
-}
-
-class _StarRatingWidgetState extends State<StarRatingWidget> {
-  int selectedStars = 0; // Số sao mặc định được chọn
-
-  // final List<String> tags = [
-  //   "Tuyệt vời!",
-  //   "Xe sạch sẽ",
-  //   "Lái xe an toàn",
-  //   "Ngồi êm ái",
-  //   "Đúng giờ",
-  //   "Di chuyển nhanh",
-  //   "Ứng dụng dễ dùng",
-  // ];
 
   @override
   Widget build(BuildContext context) {
@@ -245,33 +170,7 @@ class _StarRatingWidgetState extends State<StarRatingWidget> {
 
                               SizedBox(height: 16),
 
-                              Row(
-                                mainAxisSize: MainAxisSize.min,
-                                // Giúp Row chỉ chiếm đúng nội dung bên trong
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: List.generate(5, (index) {
-                                  return InkWell(
-                                    onTap: () {
-                                      setState(() {
-                                        selectedStars =
-                                            index +
-                                            1; // Cập nhật số sao được chọn
-                                      });
-                                    },
-                                    borderRadius: BorderRadius.circular(20),
-                                    child: Padding(
-                                      padding: EdgeInsets.all(4),
-                                      child: Image.asset(
-                                        index < selectedStars
-                                            ? "assets/star_filled.png"
-                                            : "assets/star_empty.png",
-                                        width: 42,
-                                        height: 42,
-                                      ),
-                                    ),
-                                  );
-                                }),
-                              ),
+                              StarRatingWidget(),
 
                               SizedBox(height: 16),
 
