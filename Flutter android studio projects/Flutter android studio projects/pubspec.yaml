@@ -40,6 +40,7 @@ dependencies:
   flutter_bloc: ^9.1.0
   dio: ^5.8.0+1
   flutter_svg: ^2.0.9
+  intl: ^0.18.0
 
 dev_dependencies:
   flutter_test:
@@ -78,6 +79,7 @@ flutter:
     - assets/images/circle-warning.png
     - assets/images/ask-question.png
     - assets/images/profile_banner.png
+    - assets/images/bus.png
     - assets/svg/car.svg
     - assets/svg/history.svg
     - assets/svg/account.svg
@@ -91,6 +93,8 @@ flutter:
     - assets/svg/globe.svg
     - assets/svg/key.svg
     - assets/svg/sign_out.svg
+    - assets/svg/bluedot.svg
+    - assets/svg/orangedot.svg
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/to/resolution-aware-images

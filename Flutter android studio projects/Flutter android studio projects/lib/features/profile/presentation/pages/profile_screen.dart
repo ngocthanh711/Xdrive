@@ -5,6 +5,8 @@ import '../blocs/profile_bloc.dart';
 import '../blocs/profile_state.dart';
 import 'package:phenikaaxdrive/features/rating/presentation/pages/rating.dart';
 import 'package:phenikaaxdrive/features/profile/presentation/widgets/profile_avatar.dart';
+import 'package:phenikaaxdrive/features/profile/presentation/widgets/menu_items.dart';
+
 
 class ProfileScreen extends StatelessWidget {
   const ProfileScreen({super.key});
@@ -32,7 +34,7 @@ class ProfileScreen extends StatelessWidget {
 
           // Danh sách menu
           Container(
-            padding: EdgeInsets.all(16),
+            padding: EdgeInsets.symmetric(horizontal: 0),
             decoration: BoxDecoration(
               color: Colors.white,
               boxShadow: [
@@ -50,29 +52,28 @@ class ProfileScreen extends StatelessWidget {
               physics: BouncingScrollPhysics(),
               padding: EdgeInsets.zero,
               children: [
-                _buildMenuItem(
-                  context,
-                  'assets/svg/wallet.svg',
-                  "Phương thức thanh toán",
-                  Rating(),
+                MenuItem(
+                  svgIcon: 'assets/svg/wallet.svg',
+                  title: "Phương thức thanh toán",
+                  screen: Rating(),
                 ),
-                _buildMenuItem(
-                  context,
-                  'assets/svg/location.svg',
-                  "Địa điểm yêu thích",
-                  Rating(),
+
+                MenuItem(
+                  svgIcon: 'assets/svg/location.svg',
+                  title: "Địa điểm yêu thích",
+                  screen: Rating(),
                 ),
-                _buildMenuItem(
-                  context,
-                  'assets/svg/setting.svg',
-                  "Tùy chỉnh riêng tư",
-                  Rating(),
+
+                MenuItem(
+                  svgIcon: 'assets/svg/setting.svg',
+                  title: "Tùy chỉnh riêng tư",
+                  screen: Rating(),
                 ),
-                _buildMenuItem(
-                  context,
-                  'assets/svg/bell.svg',
-                  "Cấu hình thông báo",
-                  Rating(),
+
+                MenuItem(
+                  svgIcon: 'assets/svg/bell.svg',
+                  title: "Cấu hình thông báo",
+                  screen: Rating(),
                 ),
               ],
             ),
@@ -81,7 +82,6 @@ class ProfileScreen extends StatelessWidget {
           SizedBox(height: 16),
 
           Container(
-            padding: EdgeInsets.all(16),
             decoration: BoxDecoration(
               color: Colors.white,
               boxShadow: [
@@ -98,17 +98,16 @@ class ProfileScreen extends StatelessWidget {
               shrinkWrap: true,
               padding: EdgeInsets.zero,
               children: [
-                _buildMenuItem(
-                  context,
-                  'assets/svg/document.svg',
-                  "Điều khoản & Chính sách",
-                  Rating(),
+                MenuItem(
+                  svgIcon: 'assets/svg/document.svg',
+                  title: "Điều khoản & Chính sách",
+                  screen: Rating(),
                 ),
-                _buildMenuItem(
-                  context,
-                  'assets/svg/globe.svg',
-                  "Ngôn ngữ",
-                  Rating(),
+
+                MenuItem(
+                  svgIcon: 'assets/svg/globe.svg',
+                  title: "Ngôn ngữ",
+                  screen: Rating(),
                 ),
               ],
             ),
@@ -117,7 +116,6 @@ class ProfileScreen extends StatelessWidget {
           SizedBox(height: 16),
 
           Container(
-            padding: EdgeInsets.all(16),
             decoration: BoxDecoration(
               color: Colors.white,
               boxShadow: [
@@ -134,17 +132,19 @@ class ProfileScreen extends StatelessWidget {
               shrinkWrap: true,
               padding: EdgeInsets.zero,
               children: [
-                _buildMenuItem(
-                  context,
-                  'assets/svg/key.svg',
-                  "Đổi mật khẩu",
-                  Rating(),
+                MenuItem(
+                  svgIcon: 'assets/svg/key.svg',
+                  title: "Đổi mật khẩu",  //nó đang bị lỗi file SVG
+                  screen: Rating(),
                 ),
+
                 ListTile(
                   leading: SvgPicture.asset(
-                    'assets/svg/Sign_out.svg',
+                    'assets/svg/sign_out.svg',
                     width: 24, // Kích thước icon
                     height: 24,
+                    fit: BoxFit.contain, // Điều chỉnh kích thước icon cho đồng đều
+                    alignment: Alignment.centerLeft, // Căn trái icon
                   ),
                   title: Text(
                     'Đăng xuất',
@@ -157,7 +157,7 @@ class ProfileScreen extends StatelessWidget {
                   ),
                   trailing: Icon(Icons.arrow_forward_ios, size: 16),
                   onTap: () {
-                    // Xử lý khi nhấn vào menu
+                    _handleLogout(context);
                   },
                 ),
               ],
@@ -169,30 +169,33 @@ class ProfileScreen extends StatelessWidget {
   }
 }
 
-Widget _buildMenuItem(
-  BuildContext context,
-  String svgIcon,
-  String title,
-  Widget screen,
-) {
-  return ListTile(
-    leading: SvgPicture.asset(
-      svgIcon,
-      width: 24, // Kích thước icon
-      height: 24,
-    ),
-    title: Text(
-      title,
-      style: TextStyle(
-        color: Color(0xff0C215C),
-        fontWeight: FontWeight.w500,
-        height: 1.5,
-        fontSize: 16,
-      ),
-    ),
-    trailing: Icon(Icons.arrow_forward_ios, size: 16),
-    onTap: () {
-      Navigator.push(context, MaterialPageRoute(builder: (context) => screen));
+
+void _handleLogout(BuildContext context) {
+  showDialog(
+    context: context,
+    builder: (BuildContext context) {
+      return AlertDialog(
+        title: Text("Đăng xuất"),
+        content: Text("Bạn có chắc chắn muốn đăng xuất không?"),
+        actions: [
+          TextButton(
+            onPressed: () {
+              Navigator.of(context).pop();
+            },
+            child: Text("Hủy"),
+          ),
+          TextButton(
+            onPressed: () {
+              Navigator.of(context).pop();
+              // Thực hiện xử lý đăng xuất tại đây
+              print("User logged out!");
+            },
+            child: Text("Đăng xuất"),
+          ),
+        ],
+      );
     },
   );
 }
+
+

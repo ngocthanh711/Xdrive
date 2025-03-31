@@ -26,8 +26,8 @@ class _StarRatingWidgetState extends State<StarRatingWidget> {
             padding: EdgeInsets.all(4),
             child: Image.asset(
               index < selectedStars
-                  ? "assets/star_filled.png"
-                  : "assets/star_empty.png",
+                  ? "assets/images/star_filled.png"
+                  : "assets/images/star_empty.png",
               width: 42,
               height: 42,
             ),

@@ -3,7 +3,7 @@ import 'package:phenikaaxdrive/features/customer_support/presentation/pages/cust
 import 'package:phenikaaxdrive/features/rating/presentation/pages/rating.dart';
 import 'package:phenikaaxdrive/features/navigation_bottom_bar/widget/navigation_widget.dart';
 import 'package:phenikaaxdrive/features/profile/presentation/pages/profile_screen.dart';
-
+import 'package:phenikaaxdrive/features/history/presentation/pages/history_screen.dart';
 
 
 void main() {
@@ -17,7 +17,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: ProfileScreen(),
+      home: PersistentBottomNavPage(),
     );
   }
 }

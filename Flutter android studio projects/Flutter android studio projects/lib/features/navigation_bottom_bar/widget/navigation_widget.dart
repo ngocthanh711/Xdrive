@@ -2,23 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:phenikaaxdrive/features/customer_support/presentation/pages/customer_support.dart';
 import 'package:phenikaaxdrive/features/profile/presentation/pages/profile_screen.dart';
+import 'package:phenikaaxdrive/features/history/presentation/pages/history_screen.dart';
 
 
-void main() {
-  runApp(const MyApp());
-}
 
-class MyApp extends StatelessWidget {
-  const MyApp({Key? key}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      home: PersistentBottomNavPage(),
-    );
-  }
-}
 
 Widget _customIcon(String assetName, {bool isActive = false}) {
   return SizedBox(width: 24, height: 24, child: SvgPicture.asset(assetName));
@@ -81,7 +68,10 @@ class TabPage2 extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return _buildTabPage(context, 'Search', Colors.green);
+    return MaterialApp(
+      debugShowCheckedModeBanner: false,
+      home: History(),
+    );
   }
 }
 
