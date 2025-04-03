@@ -20,7 +20,7 @@ class MenuItem extends StatelessWidget {
         svgIcon,
         width: 24,
         height: 24,
-        fit: BoxFit.contain,
+        fit: BoxFit.cover,
         alignment: Alignment.centerLeft,
       ),
       title: Text(

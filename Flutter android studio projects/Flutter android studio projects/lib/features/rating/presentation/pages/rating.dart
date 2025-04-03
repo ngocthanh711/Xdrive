@@ -15,7 +15,7 @@ class Rating extends StatelessWidget {
         alignment: Alignment.center,
         children: [
           Container(
-            padding: const EdgeInsets.fromLTRB(0, kTextTabBarHeight * 2, 0, 16),
+            padding: const EdgeInsets.fromLTRB(0, kTextTabBarHeight * 1.3, 0, 16),
             width: MediaQuery.of(context).size.width,
             height: MediaQuery.of(context).size.height,
             decoration: BoxDecoration(
@@ -26,9 +26,38 @@ class Rating extends StatelessWidget {
             ),
             child: Column(
               children: [
+                Stack(
+                  alignment: Alignment.center,
+                  children: [
+                    Positioned(
+                      left: 0,
+                      child: IconButton(
+                        icon: Icon(Icons.arrow_back),
+                        // Biểu tượng mũi tên quay lại
+                        onPressed: () {
+                          Navigator.pop(context); // Quay lại màn hình trước đó
+                        },
+                      ),
+                    ),
+
+                    Center(
+                      child: Text(
+                        'Chi tiết chuyến đi',
+                        textAlign: TextAlign.center,
+                        style: TextStyle(
+                          fontSize: 20,
+                          fontWeight: FontWeight.w600,
+                          height: 1.4,
+                          color: Color(0xFF0C215C),
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+                SizedBox(height: 21),
                 Expanded(
                   child: SingleChildScrollView(
-                    padding: EdgeInsets.all(16),
+                    padding: EdgeInsets.symmetric(horizontal: 16),
                     child: Column(
                       children: [
                         Container(
@@ -175,7 +204,17 @@ class Rating extends StatelessWidget {
 
                               SizedBox(height: 16),
 
-                              TagButtons(),
+                              TagButtons(
+                                tags: [
+                                  "Tuyệt vời!",
+                                  "Xe sạch sẽ",
+                                  "Lái xe an toàn",
+                                  "Ngồi êm ái",
+                                  "Đúng giờ",
+                                  "Di chuyển nhanh",
+                                  "Ứng dụng dễ dùng"
+                                ],
+                              ),
 
                               SizedBox(height: 16),
 
@@ -353,19 +392,19 @@ class Rating extends StatelessWidget {
             ),
           ),
 
-          Positioned(
-            top: kToolbarHeight,
-            child: Text(
-              "Kết thúc chuyến đi",
-              textAlign: TextAlign.center,
-              style: TextStyle(
-                fontSize: 20,
-                fontWeight: FontWeight.w600,
-                height: 1.4,
-                color: Color(0xFF0C215C),
-              ),
-            ),
-          ),
+          // Positioned(
+          //   top: kToolbarHeight,
+          //   child: Text(
+          //     "Kết thúc chuyến đi",
+          //     textAlign: TextAlign.center,
+          //     style: TextStyle(
+          //       fontSize: 20,
+          //       fontWeight: FontWeight.w600,
+          //       height: 1.4,
+          //       color: Color(0xFF0C215C),
+          //     ),
+          //   ),
+          // ),
         ],
       ),
     );

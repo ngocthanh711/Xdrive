@@ -80,6 +80,8 @@ flutter:
     - assets/images/ask-question.png
     - assets/images/profile_banner.png
     - assets/images/bus.png
+    - assets/images/bus_detail.png
+    - assets/images/vietcombank.png
     - assets/svg/car.svg
     - assets/svg/history.svg
     - assets/svg/account.svg
@@ -95,6 +97,16 @@ flutter:
     - assets/svg/sign_out.svg
     - assets/svg/bluedot.svg
     - assets/svg/orangedot.svg
+    - assets/svg/time.svg
+    - assets/svg/wait_icon.svg
+    - assets/svg/orangelocation.svg
+    - assets/svg/bluedot_detail.svg
+    - assets/svg/orangedot_detail.svg
+    - assets/svg/key2.svg
+    - assets/svg/selected_car.svg
+    - assets/svg/selected_history.svg
+    - assets/svg/selected_support.svg
+    - assets/svg/selected_account.svg
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/to/resolution-aware-images

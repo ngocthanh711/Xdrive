@@ -133,7 +133,7 @@ class ProfileScreen extends StatelessWidget {
               padding: EdgeInsets.zero,
               children: [
                 MenuItem(
-                  svgIcon: 'assets/svg/key.svg',
+                  svgIcon: 'assets/svg/key2.svg',
                   title: "Đổi mật khẩu",  //nó đang bị lỗi file SVG
                   screen: Rating(),
                 ),

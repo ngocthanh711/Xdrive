@@ -73,8 +73,10 @@ class History extends StatelessWidget {
                                     Text(
                                       entry.key,
                                       style: TextStyle(
-                                        fontSize: 18,
-                                        fontWeight: FontWeight.bold,
+                                        fontSize: 14,
+                                        fontWeight: FontWeight.w600,
+                                        height: 1.42857,
+                                        color: Color(0xff0C215C),
                                       ),
                                     ),
                                     SizedBox(height: 3.5),

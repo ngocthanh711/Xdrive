@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:intl/intl.dart';
+import 'package:phenikaaxdrive/features/trip_detail/presentation/pages/trip_detail_screen.dart';
 import 'package:phenikaaxdrive/features/history/presentation/widgets/format_number.dart';
 import 'package:phenikaaxdrive/features/history/data/models/trip_model.dart';
 import 'package:phenikaaxdrive/features/history/data/data_sources/mock_data.dart';
+import 'package:phenikaaxdrive/features/trip_detail/presentation/widgets/dash_line.dart';
 
 class TripCard extends StatelessWidget {
   final Trip trip;
@@ -192,7 +194,7 @@ class TripCard extends StatelessWidget {
                       Color(0xff16348F),
                     ),
                     if (trip.status == "Đã hủy" || trip.status == "Hoàn thành")
-                      _buildButton(
+                      _buildButton2(
                         context,
                         "Đặt lại",
                         Color(0xff16348F),
@@ -208,7 +210,7 @@ class TripCard extends StatelessWidget {
     );
   }
 
-  Widget _buildButton(
+  Widget _buildButton2(
       BuildContext context,
       String label,
       Color color,
@@ -217,7 +219,9 @@ class TripCard extends StatelessWidget {
     return Padding(
       padding: EdgeInsets.only(left: 8),
       child: ElevatedButton(
-        onPressed: () {},
+        onPressed: () {
+
+        },
         style: ElevatedButton.styleFrom(
           backgroundColor: color,
           shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
@@ -236,27 +240,36 @@ class TripCard extends StatelessWidget {
   }
 }
 
-class DashedLinePainter extends CustomPainter {
-  @override
-  void paint(Canvas canvas, Size size) {
-    final paint =
-    Paint()
-      ..color = Color(0xffCAD1E4)
-      ..strokeWidth = 1
-      ..style = PaintingStyle.stroke;
-
-    final dashWidth = 5;
-    final dashSpace = 5;
-
-    double startY = 0;
-    while (startY < size.height) {
-      canvas.drawLine(Offset(0, startY), Offset(0, startY + dashWidth), paint);
-      startY += dashWidth + dashSpace;
-    }
-  }
-
-  @override
-  bool shouldRepaint(CustomPainter oldDelegate) {
-    return false;
-  }
+Widget _buildButton(
+    BuildContext context,
+    String label,
+    Color color,
+    Color textcolor,
+    ) {
+  return Padding(
+    padding: EdgeInsets.only(left: 8),
+    child: ElevatedButton(
+      onPressed: () {
+        Navigator.push(
+          context,
+          MaterialPageRoute(builder: (context) => TripDetail()), // Điều hướng tới SecondScreen
+        );
+      },
+      style: ElevatedButton.styleFrom(
+        backgroundColor: color,
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
+      ),
+      child: Text(
+        label,
+        style: TextStyle(
+          color: textcolor,
+          fontSize: 12,
+          fontWeight: FontWeight.w700,
+          height: 1.3333,
+        ),
+      ),
+    ),
+  );
 }
+
+

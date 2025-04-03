@@ -4,7 +4,7 @@ import 'package:phenikaaxdrive/features/rating/presentation/pages/rating.dart';
 import 'package:phenikaaxdrive/features/navigation_bottom_bar/widget/navigation_widget.dart';
 import 'package:phenikaaxdrive/features/profile/presentation/pages/profile_screen.dart';
 import 'package:phenikaaxdrive/features/history/presentation/pages/history_screen.dart';
-
+import 'package:phenikaaxdrive/features/trip_detail/presentation/pages/trip_detail_screen.dart';
 
 void main() {
   runApp(MyApp());

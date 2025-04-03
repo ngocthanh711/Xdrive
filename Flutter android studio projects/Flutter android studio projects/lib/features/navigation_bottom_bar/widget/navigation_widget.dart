@@ -4,9 +4,6 @@ import 'package:phenikaaxdrive/features/customer_support/presentation/pages/cust
 import 'package:phenikaaxdrive/features/profile/presentation/pages/profile_screen.dart';
 import 'package:phenikaaxdrive/features/history/presentation/pages/history_screen.dart';
 
-
-
-
 Widget _customIcon(String assetName, {bool isActive = false}) {
   return SizedBox(width: 24, height: 24, child: SvgPicture.asset(assetName));
 }
@@ -25,25 +22,29 @@ class PersistentBottomNavPage extends StatelessWidget {
       items: [
         PersistentTabItem(
           tab: const TabPage1(),
-          icon: _customIcon('assets/svg/car.svg'),
+          icon: 'assets/svg/car.svg',
+          activedIcon: 'assets/svg/selected_car.svg',
           title: 'Đặt xe',
           navigatorkey: _tab1navigatorKey,
         ),
         PersistentTabItem(
           tab: const TabPage2(),
-          icon: _customIcon('assets/svg/history.svg'),
+          icon: 'assets/svg/history.svg',
+          activedIcon: 'assets/svg/selected_history.svg',
           title: 'Lịch sử',
           navigatorkey: _tab2navigatorKey,
         ),
         PersistentTabItem(
           tab: const TabPage3(),
-          icon: _customIcon('assets/svg/support.svg'),
+          icon: 'assets/svg/support.svg',
+          activedIcon: 'assets/svg/selected_support.svg',
           title: 'Hỗ trợ',
           navigatorkey: _tab3navigatorKey,
         ),
         PersistentTabItem(
           tab: const TabPage4(),
-          icon: _customIcon('assets/svg/account.svg'),
+          icon: 'assets/svg/account.svg',
+          activedIcon: 'assets/svg/selected_account.svg',
           title: 'Tài khoản',
           navigatorkey: _tab4navigatorKey,
         ),
@@ -51,8 +52,6 @@ class PersistentBottomNavPage extends StatelessWidget {
     );
   }
 }
-
-// =================== TẠO CÁC TAB ===================
 
 class TabPage1 extends StatelessWidget {
   const TabPage1({Key? key}) : super(key: key);
@@ -136,12 +135,15 @@ class DetailPage extends StatelessWidget {
   }
 }
 
+
+// ... (các lớp TabPage1, TabPage2, TabPage3, TabPage4, DetailPage vẫn giữ nguyên)
+
 // =================== BOTTOM NAVIGATION BAR ===================
 class PersistentBottomBarScaffold extends StatefulWidget {
   final List<PersistentTabItem> items;
 
   const PersistentBottomBarScaffold({Key? key, required this.items})
-    : super(key: key);
+      : super(key: key);
 
   @override
   State<PersistentBottomBarScaffold> createState() =>
@@ -168,14 +170,14 @@ class _PersistentBottomBarScaffoldState
         body: IndexedStack(
           index: _selectedTab,
           children:
-              widget.items.map((page) {
-                return Navigator(
-                  key: page.navigatorkey,
-                  onGenerateInitialRoutes: (_, __) {
-                    return [MaterialPageRoute(builder: (context) => page.tab)];
-                  },
-                );
-              }).toList(),
+          widget.items.map((page) {
+            return Navigator(
+              key: page.navigatorkey,
+              onGenerateInitialRoutes: (_, __) {
+                return [MaterialPageRoute(builder: (context) => page.tab)];
+              },
+            );
+          }).toList(),
         ),
         bottomNavigationBar: Container(
           decoration: BoxDecoration(
@@ -195,13 +197,11 @@ class _PersistentBottomBarScaffoldState
               elevation: 0,
               backgroundColor: Colors.transparent,
               currentIndex: _selectedTab,
-              // Đảm bảo giá trị hiện tại được cập nhật
               onTap: (index) {
                 setState(() {
-                  _selectedTab = index; // Cập nhật tab khi được chọn
+                  _selectedTab = index;
                 });
               },
-              selectedItemColor: Color(0xff16348F),
               unselectedItemColor: Colors.grey,
               unselectedLabelStyle: TextStyle(
                 fontSize: 14,
@@ -224,7 +224,10 @@ class _PersistentBottomBarScaffoldState
                   icon: SizedBox(
                     width: 40,
                     height: 40,
-                    child: item.icon,
+                    child: SvgPicture.asset(
+                      _selectedTab == widget.items.indexOf(item) ? item.activedIcon : item.icon,
+                      key: ValueKey(_selectedTab == widget.items.indexOf(item) ? item.activedIcon : item.icon), // Thêm ValueKey
+                    ),
                   ),
                   label: item.title,
                 ),
@@ -243,12 +246,14 @@ class PersistentTabItem {
   final Widget tab;
   final GlobalKey<NavigatorState>? navigatorkey;
   final String title;
-  final Widget icon;
+  final String icon;
+  final String activedIcon;
 
   PersistentTabItem({
     required this.tab,
     this.navigatorkey,
     required this.title,
     required this.icon,
+    required this.activedIcon,
   });
 }
