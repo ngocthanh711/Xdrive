@@ -1,8 +1,28 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:go_router/go_router.dart';
 import 'package:phenikaaxdrive/features/customer_support/presentation/pages/customer_support.dart';
 import 'package:phenikaaxdrive/features/profile/presentation/pages/profile_screen.dart';
 import 'package:phenikaaxdrive/features/history/presentation/pages/history_screen.dart';
+import 'package:google_fonts/google_fonts.dart';
+
+// =================== MODEL CHO TABS ===================
+class PersistentTabItem {
+  final Widget tab;
+  final GlobalKey<NavigatorState>? navigatorkey;
+  final String title;
+  final String icon;
+  final String activedIcon;
+
+  PersistentTabItem({
+    required this.tab,
+    this.navigatorkey,
+    required this.title,
+    required this.icon,
+    required this.activedIcon,
+  });
+}
+
 
 Widget _customIcon(String assetName, {bool isActive = false}) {
   return SizedBox(width: 24, height: 24, child: SvgPicture.asset(assetName));
@@ -136,13 +156,22 @@ class DetailPage extends StatelessWidget {
 }
 
 
-// ... (các lớp TabPage1, TabPage2, TabPage3, TabPage4, DetailPage vẫn giữ nguyên)
-
 // =================== BOTTOM NAVIGATION BAR ===================
 class PersistentBottomBarScaffold extends StatefulWidget {
   final List<PersistentTabItem> items;
 
   const PersistentBottomBarScaffold({Key? key, required this.items})
+      : super(key: key);
+
+  @override
+  State<PersistentBottomBarScaffold> createState() =>
+      _PersistentBottomBarScaffoldState();
+}
+
+class _PersistentBottomBarScaffold extends StatefulWidget {
+  final List<PersistentTabItem> items;
+
+  const _PersistentBottomBarScaffold({Key? key, required this.items})
       : super(key: key);
 
   @override
@@ -156,6 +185,12 @@ class _PersistentBottomBarScaffoldState
 
   @override
   Widget build(BuildContext context) {
+    // Danh sách các tuyến đường mà bạn muốn ẩn thanh điều hướng
+    final List<String> hiddenRoutes = [
+      '/rating',
+      '/trip_detail'
+    ]; // Thêm các tuyến đường khác nếu cần
+
     return WillPopScope(
       onWillPop: () async {
         if (widget.items[_selectedTab].navigatorkey?.currentState?.canPop() ??
@@ -169,8 +204,7 @@ class _PersistentBottomBarScaffoldState
       child: Scaffold(
         body: IndexedStack(
           index: _selectedTab,
-          children:
-          widget.items.map((page) {
+          children: widget.items.map((page) {
             return Navigator(
               key: page.navigatorkey,
               onGenerateInitialRoutes: (_, __) {
@@ -179,81 +213,74 @@ class _PersistentBottomBarScaffoldState
             );
           }).toList(),
         ),
-        bottomNavigationBar: Container(
-          decoration: BoxDecoration(
-            color: Colors.white,
-            boxShadow: [
-              BoxShadow(
-                color: const Color(0xFF8999CB).withOpacity(0.24),
-                blurRadius: 16,
-                spreadRadius: 0,
-                offset: const Offset(0, -4),
-              ),
-            ],
-          ),
-          child: Padding(
-            padding: EdgeInsets.fromLTRB(16, 8, 16, 0),
-            child: BottomNavigationBar(
-              elevation: 0,
-              backgroundColor: Colors.transparent,
-              currentIndex: _selectedTab,
-              onTap: (index) {
-                setState(() {
-                  _selectedTab = index;
-                });
-              },
-              unselectedItemColor: Colors.grey,
-              unselectedLabelStyle: TextStyle(
-                fontSize: 14,
-                fontWeight: FontWeight.w600,
-                height: 1.42857,
-              ),
-              selectedLabelStyle: TextStyle(
-                fontSize: 14,
-                fontWeight: FontWeight.w600,
-                height: 1.42857,
-              ),
-              type: BottomNavigationBarType.fixed,
-              iconSize: 40,
-              selectedFontSize: 14,
-              unselectedFontSize: 14,
-              items:
-              widget.items
-                  .map(
-                    (item) => BottomNavigationBarItem(
-                  icon: SizedBox(
-                    width: 40,
-                    height: 40,
-                    child: SvgPicture.asset(
-                      _selectedTab == widget.items.indexOf(item) ? item.activedIcon : item.icon,
-                      key: ValueKey(_selectedTab == widget.items.indexOf(item) ? item.activedIcon : item.icon), // Thêm ValueKey
-                    ),
+        bottomNavigationBar: Builder(
+          builder: (context) {
+            final location = GoRouterState.of(context).uri.toString();
+            if (hiddenRoutes.contains(location)) {
+              return SizedBox.shrink(); // Trả về một Widget rỗng thay vì null
+            }
+            return Container(
+              decoration: BoxDecoration(
+                color: Colors.white,
+                boxShadow: [
+                  BoxShadow(
+                    color: const Color(0xFF8999CB).withOpacity(0.24),
+                    blurRadius: 16,
+                    spreadRadius: 0,
+                    offset: const Offset(0, -4),
                   ),
-                  label: item.title,
+                ],
+              ),
+              child: BottomNavigationBar(
+                elevation: 0,
+                backgroundColor: Colors.transparent,
+                currentIndex: _selectedTab,
+                onTap: (index) {
+                  setState(() {
+                    _selectedTab = index;
+                  });
+                },
+                unselectedItemColor: Colors.grey,
+                unselectedLabelStyle: GoogleFonts.interTight(
+                  fontSize: 14,
+                  fontWeight: FontWeight.w600,
+                  height: 1.42857,
                 ),
-              )
-                  .toList(),
-            ),
-          ),
+                selectedLabelStyle: GoogleFonts.interTight(
+                  fontSize: 14,
+                  fontWeight: FontWeight.w600,
+                  height: 1.42857,
+                ),
+                type: BottomNavigationBarType.fixed,
+                iconSize: 40,
+                selectedFontSize: 14,
+                unselectedFontSize: 14,
+                items: widget.items
+                    .map(
+                      (item) => BottomNavigationBarItem(
+                    icon: SizedBox(
+                      width: 40,
+                      height: 40,
+                      child: SvgPicture.asset(
+                        _selectedTab == widget.items.indexOf(item)
+                            ? item.activedIcon
+                            : item.icon,
+                        key: ValueKey(_selectedTab ==
+                            widget.items.indexOf(item)
+                            ? item.activedIcon
+                            : item.icon), // Thêm ValueKey
+                      ),
+                    ),
+                    label: item.title,
+                  ),
+                )
+                    .toList(),
+              ),
+            );
+          },
         ),
       ),
     );
   }
 }
 
-// =================== MODEL CHO TABS ===================
-class PersistentTabItem {
-  final Widget tab;
-  final GlobalKey<NavigatorState>? navigatorkey;
-  final String title;
-  final String icon;
-  final String activedIcon;
-
-  PersistentTabItem({
-    required this.tab,
-    this.navigatorkey,
-    required this.title,
-    required this.icon,
-    required this.activedIcon,
-  });
-}

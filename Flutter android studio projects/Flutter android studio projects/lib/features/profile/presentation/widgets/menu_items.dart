@@ -1,16 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:go_router/go_router.dart';
+import 'package:google_fonts/google_fonts.dart';
+
 
 class MenuItem extends StatelessWidget {
   final String svgIcon;
   final String title;
-  final Widget screen;
+  final String path; // Thay đổi từ Widget screen thành String path
 
   const MenuItem({
     super.key,
     required this.svgIcon,
     required this.title,
-    required this.screen,
+    required this.path, // Sử dụng path thay vì screen
   });
 
   @override
@@ -25,16 +28,16 @@ class MenuItem extends StatelessWidget {
       ),
       title: Text(
         title,
-        style: TextStyle(
+        style:  GoogleFonts.interTight(
           color: Color(0xff0C215C),
           fontWeight: FontWeight.w500,
           height: 1.5,
           fontSize: 16,
         ),
       ),
-      trailing: Icon(Icons.arrow_forward_ios, size: 16),
+      trailing: const Icon(Icons.arrow_forward_ios, size: 16),
       onTap: () {
-        Navigator.push(context, MaterialPageRoute(builder: (context) => screen));
+        context.push(path);
       },
     );
   }

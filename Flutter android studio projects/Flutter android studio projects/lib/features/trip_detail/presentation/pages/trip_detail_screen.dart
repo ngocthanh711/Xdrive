@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
 import 'package:phenikaaxdrive/features/trip_detail/data/data_sources/mock_data.dart';
 import 'package:phenikaaxdrive/features/trip_detail/presentation/blocs/trip_bloc.dart';
 import 'package:phenikaaxdrive/features/trip_detail/presentation/widgets/trip_informations.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class TripDetail extends StatelessWidget {
   @override
@@ -35,7 +37,7 @@ class TripDetail extends StatelessWidget {
                     child: Text(
                       'Chi tiết chuyến đi',
                       textAlign: TextAlign.center,
-                      style: TextStyle(
+                      style: GoogleFonts.interTight(
                         fontSize: 20,
                         fontWeight: FontWeight.w600,
                         height: 1.4,
@@ -48,25 +50,23 @@ class TripDetail extends StatelessWidget {
 
               SizedBox(height: 21),
 
-              Expanded(
-                child: FutureBuilder<Map<String, dynamic>>(
-                  future: fetchMockTrips(),
-                  builder: (context, snapshot) {
-                    if (snapshot.connectionState == ConnectionState.waiting) {
-                      return Center(child: CircularProgressIndicator());
-                    } else if (snapshot.hasError) {
-                      return Center(child: Text("Lỗi tải dữ liệu"));
-                    } else if (!snapshot.hasData || snapshot.data!.isEmpty) {
-                      return Center(child: Text("Không có dữ liệu chuyến đi"));
-                    }
+              FutureBuilder<Map<String, dynamic>>(
+                future: fetchMockTrips(),
+                builder: (context, snapshot) {
+                  if (snapshot.connectionState == ConnectionState.waiting) {
+                    return Center(child: CircularProgressIndicator());
+                  } else if (snapshot.hasError) {
+                    return Center(child: Text("Lỗi tải dữ liệu"));
+                  } else if (!snapshot.hasData || snapshot.data!.isEmpty) {
+                    return Center(child: Text("Không có dữ liệu chuyến đi"));
+                  }
 
-                    final tripDetailsData = snapshot.data!;
-                    return TripInformations(tripDetailsData: tripDetailsData);
-                  },
-                ),
+                  final tripDetailsData = snapshot.data!;
+                  return TripInformations(tripDetailsData: tripDetailsData);
+                },
               ),
 
-              // Spacer(),
+              SizedBox(height: 21),
 
 
 
@@ -99,7 +99,7 @@ class TripDetail extends StatelessWidget {
                           ),
                           child: Text(
                             "Đặt về",
-                            style: TextStyle(
+                            style: GoogleFonts.interTight(
                               fontSize: 16,
                               fontWeight: FontWeight.w700,
                               height: 1.5,
@@ -110,7 +110,9 @@ class TripDetail extends StatelessWidget {
                       SizedBox(width: 8),
                       Expanded(
                         child: ElevatedButton(
-                          onPressed: () {},
+                          onPressed: () {
+                            context.push('/');
+                          },
                           style: ElevatedButton.styleFrom(
                             shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(8),
@@ -120,7 +122,7 @@ class TripDetail extends StatelessWidget {
                           ),
                           child: Text(
                             "Đặt lại",
-                            style: TextStyle(
+                            style: GoogleFonts.interTight(
                               fontSize: 16,
                               fontWeight: FontWeight.w700,
                               height: 1.5,

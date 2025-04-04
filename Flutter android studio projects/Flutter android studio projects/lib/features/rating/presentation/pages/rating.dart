@@ -1,12 +1,44 @@
 import 'package:flutter/material.dart';
 import 'package:phenikaaxdrive/features/rating/presentation/widgets/tag_buttons.dart';
 import 'package:phenikaaxdrive/features/rating/presentation/widgets/stars_rating_widget.dart';
+import 'package:phenikaaxdrive/features/trip_detail/presentation/pages/trip_detail_screen.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 
+class Rating extends StatefulWidget {
+  @override
+  _RatingState createState() => _RatingState();
+}
 
+class _RatingState extends State<Rating> {
+  int selectedStars = 0; // Số sao được chọn
+  List<String> tagList = [];
 
-class Rating extends StatelessWidget {
+  void initState() {
+    super.initState();
+    updateTags(0); // Gọi để cập nhật tag khi màn hình khởi chạy
+  }// Danh sách tag động
 
+  void updateTags(int stars) {
+    setState(() {
+      selectedStars = stars;
+      switch (stars) {
+        case 1:
+        case 2:
+          tagList = ["Không an toàn", "Giá quá cao", "Ứng dụng lỗi", "Bị gián đoạn", "Hỗ trợ kém", "Di chuyển chậm"];
+          break;
+        case 3:
+          tagList = ["Bình thường", "Giá hơi cao", "Xe ổn", "Không mượt"];
+          break;
+        case 4:
+        case 5:
+          tagList = ["Tuyệt vời!", "Xe sạch sẽ", "Lái xe an toàn","Ngồi êm ái", "Đúng giờ", "Di chuyển nhanh", "Ứng dụng dễ dùng"];
+          break;
+        default:
+          tagList = ["Tuyệt vời!", "Xe sạch sẽ", "Lái xe an toàn","Ngồi êm ái", "Đúng giờ", "Di chuyển nhanh", "Ứng dụng dễ dùng"];
+      }
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -26,6 +58,7 @@ class Rating extends StatelessWidget {
             ),
             child: Column(
               children: [
+                // Thanh tiêu đề
                 Stack(
                   alignment: Alignment.center,
                   children: [
@@ -33,18 +66,16 @@ class Rating extends StatelessWidget {
                       left: 0,
                       child: IconButton(
                         icon: Icon(Icons.arrow_back),
-                        // Biểu tượng mũi tên quay lại
                         onPressed: () {
-                          Navigator.pop(context); // Quay lại màn hình trước đó
+                          Navigator.pop(context);
                         },
                       ),
                     ),
-
                     Center(
                       child: Text(
                         'Chi tiết chuyến đi',
                         textAlign: TextAlign.center,
-                        style: TextStyle(
+                        style: GoogleFonts.interTight(
                           fontSize: 20,
                           fontWeight: FontWeight.w600,
                           height: 1.4,
@@ -55,41 +86,36 @@ class Rating extends StatelessWidget {
                   ],
                 ),
                 SizedBox(height: 21),
+
                 Expanded(
                   child: SingleChildScrollView(
                     padding: EdgeInsets.symmetric(horizontal: 16),
                     child: Column(
                       children: [
+                        // Khung thông tin chuyến đi
                         Container(
                           width: double.infinity,
                           padding: EdgeInsets.all(16),
                           decoration: BoxDecoration(
                             color: Colors.white,
-                            border: Border.all(
-                              color: Color(0xFFCAD1E4),
-                              width: 1,
-                            ),
+                            border: Border.all(color: Color(0xFFCAD1E4), width: 1),
                             borderRadius: BorderRadius.circular(8),
                             boxShadow: [
                               BoxShadow(
                                 color: Color.fromRGBO(137, 153, 203, 0.24),
-                                // Màu với độ trong suốt
                                 blurRadius: 16,
-                                // Độ mờ của bóng
                                 spreadRadius: 0,
-                                // Độ lan rộng
-                                offset: Offset(0, 4), // Độ dịch chuyển (x, y)
+                                offset: Offset(0, 4),
                               ),
                             ],
                           ),
-
                           child: Column(
                             mainAxisSize: MainAxisSize.min,
                             crossAxisAlignment: CrossAxisAlignment.center,
                             children: [
                               Text(
                                 "Cảm ơn bạn đã chọn dịch vụ của",
-                                style: TextStyle(
+                                style: GoogleFonts.interTight(
                                   fontWeight: FontWeight.w600,
                                   fontSize: 16,
                                   height: 1.5,
@@ -105,10 +131,9 @@ class Rating extends StatelessWidget {
                               SizedBox(height: 16),
                               Text(
                                 "Tổng thanh toán",
-                                style: TextStyle(
+                                style: GoogleFonts.interTight(
                                   color: Color(0xFF909AB1),
                                   fontSize: 16,
-                                  fontStyle: FontStyle.normal,
                                   fontWeight: FontWeight.w600,
                                   height: 1.5,
                                 ),
@@ -116,37 +141,39 @@ class Rating extends StatelessWidget {
                               SizedBox(height: 8),
                               Text(
                                 "34.000đ",
-                                style: TextStyle(
+                                style: GoogleFonts.interTight(
                                   color: Color(0xFF0C215C),
                                   fontSize: 20,
                                   fontWeight: FontWeight.w600,
                                   height: 1.4,
-                                  fontStyle: FontStyle.normal,
                                 ),
                               ),
                               SizedBox(height: 16),
-                              ElevatedButton(
-                                onPressed: () {},
-                                style: ElevatedButton.styleFrom(
-                                  padding: EdgeInsets.all(0),
-                                  shape: RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(8),
-                                  ),
+                              Container(
+                                width: double.infinity,
+                                decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(8),
                                 ),
-                                child: Container(
-                                  width: double.infinity,
-                                  padding: EdgeInsets.symmetric(
-                                    horizontal: 16,
-                                    vertical: 14,
-                                  ),
-                                  decoration: BoxDecoration(
-                                    color: Color(0xFFDAE4FF),
-                                    borderRadius: BorderRadius.circular(8),
+                                child: ElevatedButton(
+                                  onPressed: () {
+                                    Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                        builder: (context) => TripDetail(),
+                                      ), // Điều hướng tới SecondScreen
+                                    );
+                                  },
+                                  style: ElevatedButton.styleFrom(
+                                    backgroundColor: Color(0xFFDAE4FF),
+                                    padding: EdgeInsets.symmetric(horizontal: 16, vertical: 14),
+                                    shape: RoundedRectangleBorder(
+                                      borderRadius: BorderRadius.circular(8),
+                                    ),
                                   ),
                                   child: Text(
                                     textAlign: TextAlign.center,
                                     "Xem chi tiết chuyến đi",
-                                    style: TextStyle(
+                                    style: GoogleFonts.interTight(
                                       color: Color(0xFF16348F),
                                       fontSize: 16,
                                       fontWeight: FontWeight.w700,
@@ -158,63 +185,51 @@ class Rating extends StatelessWidget {
                             ],
                           ),
                         ),
+
                         SizedBox(height: 16),
 
+                        // Đánh giá chuyến đi
                         Container(
                           padding: EdgeInsets.all(16),
                           width: double.infinity,
                           decoration: BoxDecoration(
                             color: Colors.white,
-                            border: Border.all(
-                              color: Color(0xFFCAD1E4),
-                              width: 1,
-                            ),
+                            border: Border.all(color: Color(0xFFCAD1E4), width: 1),
                             borderRadius: BorderRadius.circular(8),
                             boxShadow: [
                               BoxShadow(
                                 color: Color.fromRGBO(137, 153, 203, 0.24),
-                                // Màu với độ trong suốt
                                 blurRadius: 16,
-                                // Độ mờ của bóng
                                 spreadRadius: 0,
-                                // Độ lan rộng
-                                offset: Offset(0, 4), // Độ dịch chuyển (x, y)
+                                offset: Offset(0, 4),
                               ),
                             ],
                           ),
                           child: Column(
                             mainAxisSize: MainAxisSize.min,
-                            // Giữ cho Column không chiếm toàn bộ không gian trống
-                            mainAxisAlignment: MainAxisAlignment.center,
-
                             children: [
                               Text(
                                 "Chuyến đi của bạn thế nào?",
-                                style: TextStyle(
+                                style: GoogleFonts.interTight(
                                   fontWeight: FontWeight.w600,
                                   fontSize: 16,
                                   height: 1.5,
                                   color: Color(0xFF0C215C),
                                 ),
                               ),
-
                               SizedBox(height: 16),
 
-                              StarRatingWidget(),
-
-                              SizedBox(height: 16),
-
-                              TagButtons(
-                                tags: [
-                                  "Tuyệt vời!",
-                                  "Xe sạch sẽ",
-                                  "Lái xe an toàn",
-                                  "Ngồi êm ái",
-                                  "Đúng giờ",
-                                  "Di chuyển nhanh",
-                                  "Ứng dụng dễ dùng"
-                                ],
+                              // Widget đánh giá sao
+                              StarRatingWidget(
+                                onRatingChanged: (stars) {
+                                  updateTags(stars);
+                                },
                               ),
+
+                              SizedBox(height: 16),
+
+                              // Danh sách tag động
+                              TagButtons(tags: tagList),
 
                               SizedBox(height: 16),
 
@@ -222,33 +237,19 @@ class Rating extends StatelessWidget {
                                 maxLines: 3,
                                 decoration: InputDecoration(
                                   hintText: "Ghi chú",
-                                  hintStyle: TextStyle(
-                                    fontWeight: FontWeight.w500,
-                                    fontSize: 14,
-                                    height: 1.42857,
+                                  hintStyle:GoogleFonts.interTight(
                                     color: Color(0xFF909AB1),
-                                  ),
+                                    fontSize: 14,
+                                    fontWeight: FontWeight.w500,
+                                    height: 1.42857,
+                                  ) ,
                                   border: OutlineInputBorder(
                                     borderRadius: BorderRadius.circular(8),
-                                    // Bo góc
-                                    borderSide: BorderSide(
-                                      color: Color(0xFFCAD1E4),
-                                      width: 1,
-                                    ), // Viền màu xám
-                                  ),
-                                  enabledBorder: OutlineInputBorder(
-                                    borderRadius: BorderRadius.circular(8.0),
-                                    borderSide: BorderSide(
-                                      color: Color(0xFFCAD1E4),
-                                      width: 1,
-                                    ), // Viền khi chưa bấm vào
+                                    borderSide: BorderSide(color: Color(0xFFCAD1E4), width: 1),
                                   ),
                                   focusedBorder: OutlineInputBorder(
                                     borderRadius: BorderRadius.circular(8.0),
-                                    borderSide: BorderSide(
-                                      color: Colors.blue,
-                                      width: 2.0,
-                                    ), // Viền khi bấm vào
+                                    borderSide: BorderSide(color: Colors.blue, width: 2.0),
                                   ),
                                 ),
                               ),
@@ -258,153 +259,43 @@ class Rating extends StatelessWidget {
 
                         SizedBox(height: 16),
 
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                          children: [
-                            Expanded(
-                              child: ElevatedButton(
-                                onPressed: () {},
-                                style: ElevatedButton.styleFrom(
-                                  backgroundColor: Color(0xFFDAE4FF),
-                                  padding: EdgeInsets.symmetric(
-                                    vertical: 14,
-                                    horizontal: 16,
-                                  ),
-                                  shape: RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(8),
-                                  ),
-                                ),
+                        // Nút hoàn thành
 
-                                child: Row(
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  mainAxisSize: MainAxisSize.min,
-                                  children: [
-                                    Icon(
-                                      Icons.error_outline,
-                                      color: Color(0xFF16348F),
-                                      size: 20,
-                                    ),
-                                    Text(
-                                      "Báo cáo sự cố",
-                                      style: TextStyle(
-                                        color: Color(0xFF16348F),
-                                        fontSize: 14,
-                                        fontWeight: FontWeight.w700,
-                                        height: 1.42857,
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                              ),
-                            ),
-
-                            SizedBox(width: 8),
-
-                            Expanded(
-                              child: ElevatedButton(
-                                onPressed: () {},
-                                style: ElevatedButton.styleFrom(
-                                  backgroundColor: Color(0xFFDAE4FF),
-                                  padding: EdgeInsets.symmetric(
-                                    vertical: 14,
-                                    horizontal: 16,
-                                  ),
-                                  shape: RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(8),
-                                  ),
-                                ),
-
-                                child: Row(
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  mainAxisSize: MainAxisSize.min,
-                                  children: [
-                                    Icon(
-                                      Icons.live_help_outlined,
-                                      color: Color(0xFF16348F),
-                                      size: 20,
-                                    ),
-                                    Text(
-                                      "Hỗ trợ",
-                                      style: TextStyle(
-                                        color: Color(0xFF16348F),
-                                        fontSize: 14,
-                                        fontWeight: FontWeight.w700,
-                                        height: 1.42857,
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                              ),
-                            ),
-                          ],
-                        ),
-
-                        SizedBox(height: 49),
                       ],
                     ),
                   ),
                 ),
-
-                Container(
-                  padding: EdgeInsets.all(16),
-                  decoration: BoxDecoration(
-                    border: Border(
-                      top: BorderSide(
-                        color: Color(0xFFCAD1E4),
-                        width: 1.0,
-                      ), // Viền chỉ có phía trên
+                Align(
+                  alignment: Alignment.bottomCenter,
+                  child: Container(
+                    padding: EdgeInsets.all(16),
+                    decoration: BoxDecoration(
+                      border: Border(
+                        top: BorderSide(color: Color(0xFFCAD1E4), width: 1.0),
+                      ),
                     ),
-                  ),
-                  child: Column(
-                    children: [
-                      SizedBox(
-                        width: double.infinity,
-                        child: ElevatedButton(
-                          style: ElevatedButton.styleFrom(
-                            backgroundColor: Color(0xFF16348F),
-                            padding: EdgeInsets.symmetric(
-                              horizontal: 16,
-                              vertical: 14,
-                            ),
-                            // Khoảng cách bên trong
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(8),
-                            ),
-                          ),
-                          onPressed: () {
-                            // Xử lý sự kiện khi nhấn nút
-                          },
-                          child: Text(
-                            "Hoàn thành",
-                            style: TextStyle(
-                              fontSize: 16,
-                              fontWeight: FontWeight.w700,
-                              height: 1.5,
-                              color: Colors.white, // Màu chữ trắng
-                            ),
+                    child: SizedBox(
+                      width: double.infinity,
+                      child: ElevatedButton(
+                        style: ElevatedButton.styleFrom(
+                          backgroundColor: Color(0xFF16348F),
+                          padding: EdgeInsets.symmetric(horizontal: 16, vertical: 14),
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(8),
                           ),
                         ),
+                        onPressed: () {},
+                        child: Text(
+                          "Hoàn thành",
+                          style: GoogleFonts.interTight(fontSize: 16, fontWeight: FontWeight.w700, color: Colors.white),
+                        ),
                       ),
-                    ],
+                    ),
                   ),
                 ),
               ],
             ),
           ),
-
-          // Positioned(
-          //   top: kToolbarHeight,
-          //   child: Text(
-          //     "Kết thúc chuyến đi",
-          //     textAlign: TextAlign.center,
-          //     style: TextStyle(
-          //       fontSize: 20,
-          //       fontWeight: FontWeight.w600,
-          //       height: 1.4,
-          //       color: Color(0xFF0C215C),
-          //     ),
-          //   ),
-          // ),
         ],
       ),
     );

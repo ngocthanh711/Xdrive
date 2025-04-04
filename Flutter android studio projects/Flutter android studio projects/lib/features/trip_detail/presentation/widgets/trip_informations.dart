@@ -5,6 +5,7 @@ import 'package:phenikaaxdrive/features/trip_detail/data/models/trip_detail_mode
 import 'package:phenikaaxdrive/features/trip_detail/data/data_sources/mock_data.dart';
 import 'package:phenikaaxdrive/features/trip_detail/presentation/widgets/dash_line.dart';
 import 'package:phenikaaxdrive/features/history/presentation/widgets/format_number.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 
 class TripInformations extends StatelessWidget {
@@ -27,7 +28,7 @@ class TripInformations extends StatelessWidget {
                   children: [
                     Text(
                       'Mã đặt chuyến: ${tripDetailsData['trip_details']['booking_id']}',
-                      style: TextStyle(
+                      style: GoogleFonts.interTight(
                         fontSize: 18,
                         fontWeight: FontWeight.w600,
                         height: 1.55556,
@@ -43,7 +44,7 @@ class TripInformations extends StatelessWidget {
                         SizedBox(width: 8),
                         Text(
                           '${tripDetailsData['trip_details']['date']} | ${tripDetailsData['trip_details']['time']}',
-                          style: TextStyle(
+                          style: GoogleFonts.interTight(
                             fontSize: 14,
                             fontWeight: FontWeight.w500,
                             height: 1.42857,
@@ -73,7 +74,7 @@ class TripInformations extends StatelessWidget {
                         children: [
                           Text(
                             '${tripDetailsData['trip_details']['vehicle']['license_plate']}',
-                            style: TextStyle(
+                            style: GoogleFonts.interTight(
                               fontSize: 14,
                               fontWeight: FontWeight.w600,
                               height: 1.42857,
@@ -89,7 +90,7 @@ class TripInformations extends StatelessWidget {
                           SizedBox(width: 10),
                           Text(
                             '${tripDetailsData['trip_details']['vehicle']['color']}',
-                            style: TextStyle(
+                            style: GoogleFonts.interTight(
                               fontSize: 14,
                               fontWeight: FontWeight.w500,
                               height: 1.42857,
@@ -131,7 +132,7 @@ class TripInformations extends StatelessWidget {
                       children: [
                         Text(
                           '${tripDetailsData['trip_details']['distance']}',
-                          style: TextStyle(
+                          style: GoogleFonts.interTight(
                             fontSize: 16,
                             fontWeight: FontWeight.w600,
                             height: 1.5,
@@ -140,7 +141,7 @@ class TripInformations extends StatelessWidget {
                         ),
                         Text(
                           'Quãng đường',
-                          style: TextStyle(
+                          style: GoogleFonts.interTight(
                             fontSize: 14,
                             fontWeight: FontWeight.w500,
                             height: 1.42857,
@@ -155,7 +156,7 @@ class TripInformations extends StatelessWidget {
                       children: [
                         Text(
                           '${tripDetailsData['trip_details']['waiting_time']}',
-                          style: TextStyle(
+                          style: GoogleFonts.interTight(
                             fontSize: 16,
                             fontWeight: FontWeight.w600,
                             height: 1.5,
@@ -164,7 +165,7 @@ class TripInformations extends StatelessWidget {
                         ),
                         Text(
                           'Thời gian chờ',
-                          style: TextStyle(
+                          style: GoogleFonts.interTight(
                             fontSize: 14,
                             fontWeight: FontWeight.w500,
                             height: 1.42857,
@@ -179,7 +180,7 @@ class TripInformations extends StatelessWidget {
                       children: [
                         Text(
                           '${tripDetailsData['trip_details']['travel_time']}',
-                          style: TextStyle(
+                          style: GoogleFonts.interTight(
                             fontSize: 16,
                             fontWeight: FontWeight.w600,
                             height: 1.5,
@@ -188,7 +189,7 @@ class TripInformations extends StatelessWidget {
                         ),
                         Text(
                           'Thời gian đi',
-                          style: TextStyle(
+                          style: GoogleFonts.interTight(
                             fontSize: 14,
                             fontWeight: FontWeight.w500,
                             height: 1.42857,
@@ -254,7 +255,7 @@ class TripInformations extends StatelessWidget {
                             children: [
                               Text(
                                 '${startLocationName}',
-                                style: TextStyle(
+                                style: GoogleFonts.interTight(
                                   fontSize: 16,
                                   fontWeight:
                                   FontWeight.w600,
@@ -267,7 +268,7 @@ class TripInformations extends StatelessWidget {
                               SizedBox(height: 4),
                               Text(
                                 '${startLocationAddress}',
-                                style: TextStyle(
+                                style: GoogleFonts.interTight(
                                   fontSize: 14,
                                   fontWeight:
                                   FontWeight.w500,
@@ -299,7 +300,7 @@ class TripInformations extends StatelessWidget {
                             children: [
                               Text(
                                 '${endLocationName}',
-                                style: TextStyle(
+                                style: GoogleFonts.interTight(
                                   fontSize: 16,
                                   fontWeight:
                                   FontWeight.w600,
@@ -312,7 +313,7 @@ class TripInformations extends StatelessWidget {
                               SizedBox(height: 4),
                               Text(
                                 '${endLocationAddress}',
-                                style: TextStyle(
+                                style: GoogleFonts.interTight(
                                   fontSize: 14,
                                   fontWeight:
                                   FontWeight.w500,
@@ -338,7 +339,7 @@ class TripInformations extends StatelessWidget {
               // Căn text ra ngoài cùng bên trái
               child: Text(
                 'Thanh toán',
-                style: TextStyle(
+                style: GoogleFonts.interTight(
                   fontSize: 20,
                   fontWeight: FontWeight.w600,
                   height: 1.4,
@@ -361,7 +362,7 @@ class TripInformations extends StatelessWidget {
                     SizedBox(width: 16),
                     Text(
                       '${tripDetailsData['payment']['method']}',
-                      style: TextStyle(
+                      style: GoogleFonts.interTight(
                         fontSize: 16,
                         fontWeight: FontWeight.w600,
                         height: 1.5,
@@ -372,7 +373,7 @@ class TripInformations extends StatelessWidget {
                 ),
                 Text(
                   formatPriceString('${tripDetailsData['payment']['amount']}'),
-                  style: TextStyle(
+                  style: GoogleFonts.interTight(
                     fontSize: 20,
                     fontWeight: FontWeight.w700,
                     height: 1.4,

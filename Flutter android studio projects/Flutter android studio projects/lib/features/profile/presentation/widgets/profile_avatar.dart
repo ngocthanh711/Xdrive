@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class ProfileAvatar extends StatelessWidget {
   final String avatarUrl;
@@ -32,7 +33,7 @@ class ProfileAvatar extends StatelessWidget {
             children: [
               Text(
                 name,
-                style: TextStyle(
+                style: GoogleFonts.interTight(
                   color: Color(0xff0C215C),
                   fontWeight: FontWeight.w600,
                   height: 1.33333,
@@ -41,7 +42,7 @@ class ProfileAvatar extends StatelessWidget {
               ),
               Text(
                 phone,
-                style: TextStyle(
+                style: GoogleFonts.interTight(
                   color: Color(0xff909AB1),
                   fontWeight: FontWeight.w500,
                   height: 1.5,

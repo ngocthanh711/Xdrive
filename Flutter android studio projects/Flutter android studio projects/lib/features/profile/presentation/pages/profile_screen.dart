@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:go_router/go_router.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../blocs/profile_bloc.dart';
 import '../blocs/profile_state.dart';
 import 'package:phenikaaxdrive/features/rating/presentation/pages/rating.dart';
 import 'package:phenikaaxdrive/features/profile/presentation/widgets/profile_avatar.dart';
 import 'package:phenikaaxdrive/features/profile/presentation/widgets/menu_items.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 
 class ProfileScreen extends StatelessWidget {
@@ -14,7 +16,7 @@ class ProfileScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color(0xFFD6E0F0), // Màu nền xanh nhạt
+      backgroundColor: Color(0xFFF0F4FF),
       body: Column(
         children: [
           // Ảnh cover
@@ -26,7 +28,7 @@ class ProfileScreen extends StatelessWidget {
             phone: '+8427402748',
             onEditPressed: () {
               // Xử lý khi nhấn vào chỉnh sửa
-              print("Edit profile tapped!");
+              context.push('/profile/inforUpdate');
             },
           ),
 
@@ -55,25 +57,25 @@ class ProfileScreen extends StatelessWidget {
                 MenuItem(
                   svgIcon: 'assets/svg/wallet.svg',
                   title: "Phương thức thanh toán",
-                  screen: Rating(),
+                  path: '/profile/payment'
                 ),
 
                 MenuItem(
                   svgIcon: 'assets/svg/location.svg',
                   title: "Địa điểm yêu thích",
-                  screen: Rating(),
+                  path: '/rating'
                 ),
 
                 MenuItem(
                   svgIcon: 'assets/svg/setting.svg',
                   title: "Tùy chỉnh riêng tư",
-                  screen: Rating(),
+                  path: '/rating'
                 ),
 
                 MenuItem(
                   svgIcon: 'assets/svg/bell.svg',
                   title: "Cấu hình thông báo",
-                  screen: Rating(),
+                  path: '/rating'
                 ),
               ],
             ),
@@ -101,13 +103,13 @@ class ProfileScreen extends StatelessWidget {
                 MenuItem(
                   svgIcon: 'assets/svg/document.svg',
                   title: "Điều khoản & Chính sách",
-                  screen: Rating(),
+                  path: '/rating'
                 ),
 
                 MenuItem(
                   svgIcon: 'assets/svg/globe.svg',
                   title: "Ngôn ngữ",
-                  screen: Rating(),
+                  path: '/rating'
                 ),
               ],
             ),
@@ -135,7 +137,7 @@ class ProfileScreen extends StatelessWidget {
                 MenuItem(
                   svgIcon: 'assets/svg/key2.svg',
                   title: "Đổi mật khẩu",  //nó đang bị lỗi file SVG
-                  screen: Rating(),
+                  path: '/rating'
                 ),
 
                 ListTile(
@@ -148,7 +150,7 @@ class ProfileScreen extends StatelessWidget {
                   ),
                   title: Text(
                     'Đăng xuất',
-                    style: TextStyle(
+                    style: GoogleFonts.interTight(
                       color: Color(0xffFB2C36),
                       fontWeight: FontWeight.w500,
                       height: 1.5,

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:phenikaaxdrive/features/customer_support/presentation/widgets/questions.dart';
-
+import 'package:google_fonts/google_fonts.dart';
 
 
 
@@ -33,7 +33,7 @@ class Support extends StatelessWidget {
                   Text(
                     'Xin chào, chúng tôi có thể giúp gì cho bạn?',
                     textAlign: TextAlign.center,
-                    style: TextStyle(
+                    style: GoogleFonts.interTight(
                       fontSize: 20,
                       fontWeight: FontWeight.w600,
                       height: 1.4,
@@ -85,7 +85,7 @@ class Support extends StatelessWidget {
                                 SizedBox(height: 8),
                                 Text(
                                   "Trò chuyện với",
-                                  style: TextStyle(
+                                  style: GoogleFonts.interTight(
                                     fontSize: 14,
                                     fontWeight: FontWeight.w600,
                                     height: 1.4,
@@ -96,7 +96,7 @@ class Support extends StatelessWidget {
                                 SizedBox(height: 4),
                                 Text(
                                   "PhenikaaXDrive",
-                                  style: TextStyle(
+                                  style: GoogleFonts.interTight(
                                     fontSize: 14,
                                     fontWeight: FontWeight.w600,
                                     height: 1.4,
@@ -151,7 +151,7 @@ class Support extends StatelessWidget {
                                 SizedBox(height: 8),
                                 Text(
                                   "Gọi tổng đài",
-                                  style: TextStyle(
+                                  style: GoogleFonts.interTight(
                                     fontSize: 14,
                                     fontWeight: FontWeight.w600,
                                     height: 1.4,
@@ -162,7 +162,7 @@ class Support extends StatelessWidget {
                                 SizedBox(height: 4),
                                 Text(
                                   "PhenikaaXDrive",
-                                  style: TextStyle(
+                                  style: GoogleFonts.interTight(
                                     fontSize: 14,
                                     fontWeight: FontWeight.w600,
                                     height: 1.4,
@@ -180,7 +180,7 @@ class Support extends StatelessWidget {
 
                   SizedBox(height: 39),
                   Row(
-                    children: const [
+                    children: [
                       Icon(
                         Icons.help_outline,
                         color: Color(0xFF0C215C),
@@ -189,7 +189,7 @@ class Support extends StatelessWidget {
                       SizedBox(width: 8),
                       Text(
                         "Câu hỏi thường gặp",
-                        style: TextStyle(
+                        style: GoogleFonts.interTight(
                           fontSize: 20,
                           fontWeight: FontWeight.w600,
                           height: 1.4,
@@ -213,7 +213,7 @@ class Support extends StatelessWidget {
             child: Text(
               "Hỗ trợ khách hàng",
               textAlign: TextAlign.center,
-              style: TextStyle(
+              style: GoogleFonts.interTight(
                 fontSize: 20,
                 fontWeight: FontWeight.w600,
                 height: 1.4,

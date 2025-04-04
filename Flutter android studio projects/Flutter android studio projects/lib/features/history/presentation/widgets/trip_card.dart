@@ -1,11 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:go_router/go_router.dart';
 import 'package:intl/intl.dart';
 import 'package:phenikaaxdrive/features/trip_detail/presentation/pages/trip_detail_screen.dart';
 import 'package:phenikaaxdrive/features/history/presentation/widgets/format_number.dart';
 import 'package:phenikaaxdrive/features/history/data/models/trip_model.dart';
 import 'package:phenikaaxdrive/features/history/data/data_sources/mock_data.dart';
 import 'package:phenikaaxdrive/features/trip_detail/presentation/widgets/dash_line.dart';
+import 'package:google_fonts/google_fonts.dart';
+
 
 class TripCard extends StatelessWidget {
   final Trip trip;
@@ -48,7 +51,7 @@ class TripCard extends StatelessWidget {
       ),
       child: Text(
         buttonText,
-        style: TextStyle(
+        style: GoogleFonts.interTight(
           fontSize: 12,
           height: 1.3333,
           fontWeight: FontWeight.w700,
@@ -64,7 +67,7 @@ class TripCard extends StatelessWidget {
       margin: EdgeInsets.symmetric(vertical: 3.5),
       decoration: BoxDecoration(
         color: Colors.white,
-        border: Border.all(color: Color(0xffCAD1E4),width: 1),
+        border: Border.all(color: Color(0xffCAD1E4), width: 1),
         borderRadius: BorderRadius.circular(8),
         boxShadow: [
           BoxShadow(
@@ -85,7 +88,7 @@ class TripCard extends StatelessWidget {
               children: [
                 Text(
                   "${trip.time} ${trip.date}",
-                  style: TextStyle(color: Color(0xff909AB1), fontSize: 14),
+                  style: GoogleFonts.interTight(color: Color(0xff909AB1), fontSize: 14),
                 ),
 
                 _getStatusButton(context, trip.status),
@@ -118,7 +121,7 @@ class TripCard extends StatelessWidget {
                           width: null,
                           child: Text(
                             trip.from,
-                            style: TextStyle(
+                            style: GoogleFonts.interTight(
                               color: Color(0xff0C215C),
                               fontWeight: FontWeight.w500,
                               height: 1.5,
@@ -135,7 +138,7 @@ class TripCard extends StatelessWidget {
                           width: null,
                           child: Text(
                             trip.to,
-                            style: TextStyle(
+                            style: GoogleFonts.interTight(
                               color: Color(0xff0C215C),
                               fontWeight: FontWeight.w500,
                               height: 1.5,
@@ -162,7 +165,7 @@ class TripCard extends StatelessWidget {
                     children: [
                       Text(
                         formatPriceString('${trip.price}'),
-                        style: TextStyle(
+                        style: GoogleFonts.interTight(
                           color: Color(0xff0C215C),
                           fontSize: 20,
                           fontWeight: FontWeight.w700,
@@ -172,7 +175,7 @@ class TripCard extends StatelessWidget {
                       if (trip.oldPrice > trip.price)
                         Text(
                           formatPriceString('${trip.oldPrice}'),
-                          style: TextStyle(
+                          style: GoogleFonts.interTight(
                             fontSize: 12,
                             decoration: TextDecoration.lineThrough,
                             color: Color(0xff909AB1),
@@ -211,24 +214,26 @@ class TripCard extends StatelessWidget {
   }
 
   Widget _buildButton2(
-      BuildContext context,
-      String label,
-      Color color,
-      Color textcolor,
-      ) {
-    return Padding(
+    BuildContext context,
+    String label,
+    Color color,
+    Color textcolor,
+  ) {
+    return Container(
       padding: EdgeInsets.only(left: 8),
       child: ElevatedButton(
         onPressed: () {
-
+          context.push('/');
         },
         style: ElevatedButton.styleFrom(
           backgroundColor: color,
           shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
+          elevation: 0,
+
         ),
         child: Text(
           label,
-          style: TextStyle(
+          style: GoogleFonts.interTight(
             color: textcolor,
             fontSize: 12,
             fontWeight: FontWeight.w700,
@@ -241,27 +246,26 @@ class TripCard extends StatelessWidget {
 }
 
 Widget _buildButton(
-    BuildContext context,
-    String label,
-    Color color,
-    Color textcolor,
-    ) {
-  return Padding(
+  BuildContext context,
+  String label,
+  Color color,
+  Color textcolor,
+) {
+  return Container(
     padding: EdgeInsets.only(left: 8),
     child: ElevatedButton(
       onPressed: () {
-        Navigator.push(
-          context,
-          MaterialPageRoute(builder: (context) => TripDetail()), // Điều hướng tới SecondScreen
-        );
+        context.push('/tripDetail'); // Thêm vào stack
       },
       style: ElevatedButton.styleFrom(
         backgroundColor: color,
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
+        elevation: 0,
+
       ),
       child: Text(
         label,
-        style: TextStyle(
+        style: GoogleFonts.interTight(
           color: textcolor,
           fontSize: 12,
           fontWeight: FontWeight.w700,
@@ -271,5 +275,3 @@ Widget _buildButton(
     ),
   );
 }
-
-

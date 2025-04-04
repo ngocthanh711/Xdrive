@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class FAQScreen extends StatefulWidget {
   @override
@@ -56,7 +57,7 @@ class _FAQScreenState extends State<FAQScreen> {
                     (expanded) => onExpansionChanged(expanded, index),
                 title: Text(
                   faq["question"]!,
-                  style: TextStyle(
+                  style: GoogleFonts.interTight(
                     fontWeight: FontWeight.w500,
                     height: 1.5,
                     fontSize: 16,
@@ -74,7 +75,7 @@ class _FAQScreenState extends State<FAQScreen> {
                 children: [
                   Text(
                     faq["answer"]!,
-                    style: TextStyle(
+                    style: GoogleFonts.interTight(
                       fontSize: 16,
                       fontWeight: FontWeight.w400,
                       height: 1.5,

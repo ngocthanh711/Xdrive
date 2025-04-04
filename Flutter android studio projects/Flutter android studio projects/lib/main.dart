@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
+import 'package:phenikaaxdrive/core/router/app_router.dart';
 import 'package:phenikaaxdrive/features/customer_support/presentation/pages/customer_support.dart';
 import 'package:phenikaaxdrive/features/rating/presentation/pages/rating.dart';
 import 'package:phenikaaxdrive/features/navigation_bottom_bar/widget/navigation_widget.dart';
@@ -15,9 +17,9 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return MaterialApp.router(
       debugShowCheckedModeBanner: false,
-      home: PersistentBottomNavPage(),
+      routerConfig: appRouter, // Sử dụng GoRouter
     );
   }
 }

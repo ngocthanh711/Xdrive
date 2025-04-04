@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class TagButtons extends StatefulWidget {
   final List<String> tags;
@@ -41,7 +42,7 @@ class _TagButtonsState extends State<TagButtons> {
             ),
             child: Text(
               tag,
-              style: TextStyle(
+              style: GoogleFonts.interTight(
                 fontSize: 12,
                 fontWeight: FontWeight.w600,
                 height: 1.33333,
