@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:phenikaaxdrive/features/trip_detail/presentation/pages/trip_detail_screen.dart';
-import 'package:phenikaaxdrive/features/trip_detail/data/models/trip_detail_model.dart';
 import 'package:phenikaaxdrive/features/trip_detail/data/data_sources/mock_data.dart';
 import 'package:phenikaaxdrive/features/trip_detail/presentation/widgets/dash_line.dart';
 import 'package:phenikaaxdrive/features/history/presentation/widgets/format_number.dart';
@@ -222,15 +220,25 @@ class TripInformations extends StatelessWidget {
                     crossAxisAlignment:
                     CrossAxisAlignment.center,
                     children: [
-                      SvgPicture.asset(
-                        'assets/svg/bluedot.svg',
+                      Container(
+                        width: 8,
+                        height: 8,
+                        decoration: const BoxDecoration(
+                          shape: BoxShape.circle,
+                          color: Color(0xff16348F),
+                        ),
                       ),
                       CustomPaint(
                         size: Size(1, 55),
                         painter: DashedLinePainter(),
                       ),
-                      SvgPicture.asset(
-                        'assets/svg/orangedot.svg',
+                      Container(
+                        width: 8,
+                        height: 8,
+                        decoration: const BoxDecoration(
+                          shape: BoxShape.circle,
+                          color: Color(0xffEC6935),
+                        ),
                       ),
                     ],
                   ),

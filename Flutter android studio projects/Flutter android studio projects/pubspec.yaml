@@ -43,6 +43,7 @@ dependencies:
   intl: ^0.18.0
   go_router: ^14.8.1
   google_fonts: ^6.0.0
+  flutter_switch: ^0.3.2
 
 dev_dependencies:
   flutter_test:
@@ -90,6 +91,8 @@ flutter:
     - assets/images/vietinbank.png
     - assets/images/agribank.png
     - assets/images/bidv.png
+    - assets/images/vietnam.png
+    - assets/images/english.png
     - assets/svg/car.svg
     - assets/svg/history.svg
     - assets/svg/account.svg
@@ -118,6 +121,10 @@ flutter:
     - assets/svg/circle_cross.svg
     - assets/svg/circle_check.svg
     - assets/svg/plus.svg
+    - assets/svg/trash_icon.svg
+    - assets/svg/location_icon.svg
+    - assets/svg/triangle_warning.svg
+    - assets/svg/x.svg
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/to/resolution-aware-images

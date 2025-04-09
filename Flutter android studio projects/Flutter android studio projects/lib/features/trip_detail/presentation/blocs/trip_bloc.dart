@@ -1,6 +1,4 @@
-import 'dart:convert';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:phenikaaxdrive/features/trip_detail/data/models/trip_detail_model.dart';
 import 'package:phenikaaxdrive/features/trip_detail/presentation/pages/trip_detail_screen.dart';
 
 part 'trip_event.dart';

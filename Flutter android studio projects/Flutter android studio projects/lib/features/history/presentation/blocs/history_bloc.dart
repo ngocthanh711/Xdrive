@@ -1,7 +1,6 @@
-import 'package:flutter/material.dart';
+
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:phenikaaxdrive/features/history/data/models/trip_model.dart';
-import 'package:phenikaaxdrive/features/history/data/data_sources/mock_data.dart'; // Import fetchMockTrips
 import 'package:phenikaaxdrive/features/history/presentation/pages/history_screen.dart';
 
 part 'history_event.dart';

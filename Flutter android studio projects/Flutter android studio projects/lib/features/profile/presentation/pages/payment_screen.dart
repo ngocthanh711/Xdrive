@@ -77,6 +77,7 @@ class PaymentScreen extends StatelessWidget {
                         pngIcon: 'assets/images/zaloPay.png',
                         title: "Zalo Pay",
                         path: '',
+                        isActived: false,
                       ),
                       SizedBox(height: 10),
                       PaymentItem(

@@ -1,10 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:go_router/go_router.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import '../blocs/profile_bloc.dart';
-import '../blocs/profile_state.dart';
-import 'package:phenikaaxdrive/features/rating/presentation/pages/rating.dart';
 import 'package:phenikaaxdrive/features/profile/presentation/widgets/profile_avatar.dart';
 import 'package:phenikaaxdrive/features/profile/presentation/widgets/menu_items.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -16,6 +12,7 @@ class ProfileScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: null,
       backgroundColor: Color(0xFFF0F4FF),
       body: Column(
         children: [
@@ -63,19 +60,19 @@ class ProfileScreen extends StatelessWidget {
                 MenuItem(
                   svgIcon: 'assets/svg/location.svg',
                   title: "Địa điểm yêu thích",
-                  path: '/rating'
+                  path: '/profile/likedLocation'
                 ),
 
                 MenuItem(
                   svgIcon: 'assets/svg/setting.svg',
                   title: "Tùy chỉnh riêng tư",
-                  path: '/rating'
+                  path: '/profile/privateSetting'
                 ),
 
                 MenuItem(
                   svgIcon: 'assets/svg/bell.svg',
                   title: "Cấu hình thông báo",
-                  path: '/rating'
+                  path: '/profile/notification_setting'
                 ),
               ],
             ),
@@ -103,13 +100,13 @@ class ProfileScreen extends StatelessWidget {
                 MenuItem(
                   svgIcon: 'assets/svg/document.svg',
                   title: "Điều khoản & Chính sách",
-                  path: '/rating'
+                  path: '/profile/test'
                 ),
 
                 MenuItem(
                   svgIcon: 'assets/svg/globe.svg',
                   title: "Ngôn ngữ",
-                  path: '/rating'
+                  path: '/profile/language_setting'
                 ),
               ],
             ),

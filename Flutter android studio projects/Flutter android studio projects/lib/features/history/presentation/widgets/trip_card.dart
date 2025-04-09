@@ -1,14 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
+
 import 'package:go_router/go_router.dart';
-import 'package:intl/intl.dart';
-import 'package:phenikaaxdrive/features/trip_detail/presentation/pages/trip_detail_screen.dart';
 import 'package:phenikaaxdrive/features/history/presentation/widgets/format_number.dart';
 import 'package:phenikaaxdrive/features/history/data/models/trip_model.dart';
-import 'package:phenikaaxdrive/features/history/data/data_sources/mock_data.dart';
 import 'package:phenikaaxdrive/features/trip_detail/presentation/widgets/dash_line.dart';
 import 'package:google_fonts/google_fonts.dart';
-
 
 class TripCard extends StatelessWidget {
   final Trip trip;
@@ -88,7 +84,10 @@ class TripCard extends StatelessWidget {
               children: [
                 Text(
                   "${trip.time} ${trip.date}",
-                  style: GoogleFonts.interTight(color: Color(0xff909AB1), fontSize: 14),
+                  style: GoogleFonts.interTight(
+                    color: Color(0xff909AB1),
+                    fontSize: 14,
+                  ),
                 ),
 
                 _getStatusButton(context, trip.status),
@@ -101,13 +100,28 @@ class TripCard extends StatelessWidget {
                 SizedBox(width: 16),
                 Column(
                   mainAxisAlignment: MainAxisAlignment.center,
+                  mainAxisSize: MainAxisSize.min,
                   children: [
-                    SvgPicture.asset('assets/svg/bluedot.svg'),
+                    Container(
+                      width: 8,
+                      height: 8,
+                      decoration: const BoxDecoration(
+                        shape: BoxShape.circle,
+                        color: Color(0xff16348F),
+                      ),
+                    ),
                     CustomPaint(
-                      size: Size(1, 27),
+                      size: Size(1, 29),
                       painter: DashedLinePainter(),
                     ),
-                    SvgPicture.asset('assets/svg/orangedot.svg'),
+                    Container(
+                      width: 8,
+                      height: 8,
+                      decoration: const BoxDecoration(
+                        shape: BoxShape.circle,
+                        color: Color(0xffEC6935),
+                      ),
+                    ),
                   ],
                 ),
                 SizedBox(width: 8),
@@ -178,6 +192,7 @@ class TripCard extends StatelessWidget {
                           style: GoogleFonts.interTight(
                             fontSize: 12,
                             decoration: TextDecoration.lineThrough,
+                            decorationColor: Color(0xff909AB1),
                             color: Color(0xff909AB1),
                             fontWeight: FontWeight.w500,
                             height: 1.3333,
@@ -229,7 +244,6 @@ class TripCard extends StatelessWidget {
           backgroundColor: color,
           shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
           elevation: 0,
-
         ),
         child: Text(
           label,
@@ -261,7 +275,6 @@ Widget _buildButton(
         backgroundColor: color,
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
         elevation: 0,
-
       ),
       child: Text(
         label,

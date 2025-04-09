@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:phenikaaxdrive/features/history/data/models/trip_model.dart';
 import 'package:phenikaaxdrive/features/history/data/data_sources/mock_data.dart';

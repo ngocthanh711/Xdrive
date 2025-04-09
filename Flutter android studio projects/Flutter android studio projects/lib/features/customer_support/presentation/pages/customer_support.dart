@@ -65,12 +65,9 @@ class Support extends StatelessWidget {
                               boxShadow: [
                                 BoxShadow(
                                   color: Color.fromRGBO(137, 153, 203, 0.24),
-                                  // Màu với độ trong suốt
+                                  offset: Offset(0, 4),
                                   blurRadius: 16,
-                                  // Độ mờ của bóng
                                   spreadRadius: 0,
-                                  // Độ lan rộng
-                                  offset: Offset(0, 4), // Độ dịch chuyển (x, y)
                                 ),
                               ],
                             ),
@@ -131,12 +128,9 @@ class Support extends StatelessWidget {
                               boxShadow: [
                                 BoxShadow(
                                   color: Color.fromRGBO(137, 153, 203, 0.24),
-                                  // Màu với độ trong suốt
+                                  offset: Offset(0, 4),
                                   blurRadius: 16,
-                                  // Độ mờ của bóng
                                   spreadRadius: 0,
-                                  // Độ lan rộng
-                                  offset: Offset(0, 4), // Độ dịch chuyển (x, y)
                                 ),
                               ],
                             ),
